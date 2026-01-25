@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: The Recipe Archive
+  jpa:
+    show-sql: false
+    properties:
+      hibernate:
+        '[format_sql]': true
+    hibernate:
+      ddl-auto: validate
+  profiles:
+    active: dev
+  web:
+    error:
+      include-message: always
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+    baseline-on-migrate: true
+spring.profiles.active: dev
+server:
+  port: 8080
