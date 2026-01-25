@@ -5,10 +5,15 @@ This is a Spring Boot backend project for digitizing, storing, and retrieving/vi
 ### Project Details
 
 **Language and Language Version:** Java 21
+
 **Spring Boot Version:** 4.0.2
+
 **Build Tool:** Maven
+
 **Packaging:** Jar
+
 **Configuration:** YAML
+
 **Dependencies:**
 - Spring Boot Starter Web
 - Spring Boot Starter Data JPA
