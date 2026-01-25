@@ -1,6 +1,6 @@
 # The Recipe Archive
 
-This is a Spring Boot backend project for digitizing, storing, and retrieving/viewing family recipes.  I am thinking of using Svelte or a similar JavaScript, like Angular or React/Next, framework for my frontend in the future.
+This is a Spring Boot backend project for digitizing, storing, and retrieving/viewing family recipes.  I am thinking of using Svelte or a similar JavaScript framework, like Angular or React/Next, for my frontend in the future.
 
 ### Project Details
 
