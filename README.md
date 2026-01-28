@@ -29,20 +29,26 @@ The database uses MySQL and has the following tables and table columns.
 
 **Recipe Table:**
 
-- Recipe ID: int (primary key)
-- User ID: int (foreign key)
-- Title: varchar(100)
+- Recipe ID: big_int (primary key)
+- User ID: big_int (foreign key)
+- Title: varchar(200)
 - Description: text
+- Ingredients: text
+- Instructions: text
+- Allergies: text
 - Prep Time: int
 - Cooking Time: int
-- Ingredients: JSON (Array)
-- Steps: JSON (Array)
-- Allergies: JSON (Array)
+- Servings: int
+- Created At: timestamp
+- Updated At: timestamp
 
 **User Table:**
 
-- User ID: int (primary key)
+- User ID: big_int (primary key)
 - First Name: varchar(50)
 - Last Name: varchar(50)
-- Email: varchar(255)
+- Username: varchar(50)
+- Email: varchar(100)
 - Password: varchar(255)
+- Created At: timestamp
+- Updated At: timestamp
