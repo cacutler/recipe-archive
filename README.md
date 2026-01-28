@@ -15,6 +15,7 @@ This is a Spring Boot backend project with a MySQL database for digitizing, stor
 **Configuration:** YAML
 
 **Dependencies:**
+
 - Spring Boot Starter Web
 - Spring Boot Starter Data JPA
 - MySQL Connector J
