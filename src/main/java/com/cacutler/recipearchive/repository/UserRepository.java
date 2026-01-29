@@ -1,5 +1,15 @@
 package com.cacutler.recipearchive.repository;
 
-public class UserRepository {
-    
+import java.util.Optional;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import com.cacutler.recipearchive.entity.User;
+
+@Repository
+public interface UserRepository extends JpaRepository<User, Long> {
+    Optional<User> findByUsername(String username);
+
+    Optional<User> findByEmail(String email);
 }
