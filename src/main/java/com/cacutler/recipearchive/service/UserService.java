@@ -49,14 +49,12 @@ public class UserService {
     public UserDTO updateUser(Long id, UserUpdateDTO userUpdateDTO) {
         User user = userRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("User not found with id: " + id));
-
         if (userUpdateDTO.getFirstName() != null) {
             user.setFirstName(userUpdateDTO.getFirstName());
         }
         if (userUpdateDTO.getLastName() != null) {
             user.setLastName(userUpdateDTO.getLastName());
         }
-
         User updatedUser = userRepository.save(user);
         return modelMapper.map(updatedUser, UserDTO.class);
     }
