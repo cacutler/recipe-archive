@@ -24,8 +24,7 @@ public class UserService {
     private final BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
     public List<UserDTO> getAllUsers() {
-        return userRepository.findAll().stream()
-                .map(user -> modelMapper.map(user, UserDTO.class))
+        return userRepository.findAll().stream().map(user -> modelMapper.map(user, UserDTO.class))
                 .collect(Collectors.toList());
     }
 

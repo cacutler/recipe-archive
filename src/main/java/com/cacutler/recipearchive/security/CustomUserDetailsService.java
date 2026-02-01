@@ -11,28 +11,22 @@ import java.util.ArrayList;
 
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
-    @Autowired
-    private UserRepository userRepository;
+        @Autowired
+        private UserRepository userRepository;
 
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userRepository.findByUsername(username)
-                .orElseThrow(() -> new UsernameNotFoundException("User not found with username: " + username));
+        @Override
+        public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+                User user = userRepository.findByUsername(username)
+                                .orElseThrow(() -> new UsernameNotFoundException(
+                                                "User not found with username: " + username));
+                return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(),
+                                new ArrayList<>());// You can add roles/authorities here if needed
+        }
 
-        return new org.springframework.security.core.userdetails.User(
-                user.getUsername(),
-                user.getPassword(),
-                new ArrayList<>() // You can add roles/authorities here if needed
-        );
-    }
-
-    public UserDetails loadUserById(Long id) {
-        User user = userRepository.findById(id)
-                .orElseThrow(() -> new UsernameNotFoundException("User not found with id: " + id));
-
-        return new org.springframework.security.core.userdetails.User(
-                user.getUsername(),
-                user.getPassword(),
-                new ArrayList<>());
-    }
+        public UserDetails loadUserById(Long id) {
+                User user = userRepository.findById(id)
+                                .orElseThrow(() -> new UsernameNotFoundException("User not found with id: " + id));
+                return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(),
+                                new ArrayList<>());
+        }
 }

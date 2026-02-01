@@ -34,9 +34,7 @@ public class AuthController {
     public ResponseEntity<?> login(@Valid @RequestBody AuthRequest authRequest) {
         try {
             authenticationManager.authenticate(
-                    new UsernamePasswordAuthenticationToken(
-                            authRequest.getUsername(),
-                            authRequest.getPassword()));
+                    new UsernamePasswordAuthenticationToken(authRequest.getUsername(), authRequest.getPassword()));
         } catch (BadCredentialsException e) {
             Map<String, String> error = new HashMap<>();
             error.put("message", "Invalid username or password");

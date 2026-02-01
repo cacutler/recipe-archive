@@ -26,9 +26,7 @@ public class RecipeService {
     private ModelMapper modelMapper;
 
     public List<RecipeDTO> getAllRecipes() {
-        return recipeRepository.findAll().stream()
-                .map(this::convertToDTO)
-                .collect(Collectors.toList());
+        return recipeRepository.findAll().stream().map(this::convertToDTO).collect(Collectors.toList());
     }
 
     public RecipeDTO getRecipeById(Long id) {
@@ -38,16 +36,12 @@ public class RecipeService {
     }
 
     public List<RecipeDTO> getRecipesByUserId(Long userId) {
-        return recipeRepository.findByUserId(userId).stream()
-                .map(this::convertToDTO)
-                .collect(Collectors.toList());
+        return recipeRepository.findByUserId(userId).stream().map(this::convertToDTO).collect(Collectors.toList());
     }
 
     public RecipeDTO createRecipe(RecipeCreateDTO recipeCreateDTO) {
-        User user = userRepository.findById(recipeCreateDTO.getUserId())
-                .orElseThrow(
-                        () -> new ResourceNotFoundException("User not found with id: " + recipeCreateDTO.getUserId()));
-
+        User user = userRepository.findById(recipeCreateDTO.getUserId()).orElseThrow(
+                () -> new ResourceNotFoundException("User not found with id: " + recipeCreateDTO.getUserId()));
         Recipe recipe = new Recipe();
         recipe.setUser(user);
         recipe.setTitle(recipeCreateDTO.getTitle());
@@ -64,7 +58,6 @@ public class RecipeService {
     public RecipeDTO updateRecipe(Long id, RecipeUpdateDTO recipeUpdateDTO) {
         Recipe recipe = recipeRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Recipe not found with id: " + id));
-
         if (recipeUpdateDTO.getTitle() != null) {
             recipe.setTitle(recipeUpdateDTO.getTitle());
         }
@@ -86,7 +79,6 @@ public class RecipeService {
         if (recipeUpdateDTO.getServings() != null) {
             recipe.setServings(recipeUpdateDTO.getServings());
         }
-
         Recipe updatedRecipe = recipeRepository.save(recipe);
         return convertToDTO(updatedRecipe);
     }

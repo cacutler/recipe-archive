@@ -45,8 +45,7 @@ public class RecipeController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<RecipeDTO> updateRecipe(
-            @PathVariable Long id,
+    public ResponseEntity<RecipeDTO> updateRecipe(@PathVariable Long id,
             @Valid @RequestBody RecipeUpdateDTO recipeUpdateDTO) {
         RecipeDTO updated = recipeService.updateRecipe(id, recipeUpdateDTO);
         return ResponseEntity.ok(updated);
