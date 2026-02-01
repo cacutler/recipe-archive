@@ -22,6 +22,9 @@ This is a Spring Boot backend project with a MySQL database for digitizing, stor
 - Spring Boot Starter Validation
 - Lombok
 - Flyway Core
+- Model Mapper
+- Spring Boot Starter Security
+- JSON Web Token
 
 ### Database Design
 
