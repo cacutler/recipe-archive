@@ -58,7 +58,6 @@
 				cookingTime: cookingTime ? parseInt(String(cookingTime)) : undefined,
 				servings: servings ? parseInt(String(servings)) : undefined
 			});
-			console.log("updated is", updated);
 			recipeStore.updateRecipe(id, updated);
 			await goto(`/recipes/${id}`);
 		} catch (err: any) {
