@@ -4,7 +4,6 @@
 	import type { Recipe } from '$lib/types';
 	import { goto } from '$app/navigation';
 	import { onMount } from 'svelte';
-
 	let title = '';
 	let description = '';
 	let ingredients = '';
@@ -15,27 +14,22 @@
 	let servings: number | string = '';
 	let error = '';
 	let loading = false;
-
 	onMount(() => {
 		if (!$authStore.isAuthenticated) {
 			goto('/login');
 		}
 	});
-
 	async function handleSubmit() {
 		if (!title || !ingredients || !instructions) {
 			error = 'Please fill in title, ingredients, and instructions';
 			return;
 		}
-
 		if (!$authStore.user) {
 			error = 'User not found';
 			return;
 		}
-
 		loading = true;
 		error = '';
-
 		try {
 			const recipe: Recipe = await apiClient.createRecipe({
 				title,
@@ -48,7 +42,6 @@
 				servings: servings ? parseInt(String(servings)) : undefined,
 				userId: $authStore.user.id
 			});
-
 			recipeStore.addRecipe(recipe);
 			await goto('/recipes');
 		} catch (err: any) {
@@ -58,17 +51,14 @@
 		}
 	}
 </script>
-
 {#if !$authStore.isAuthenticated}
 	<div class="info">Please log in to create recipes</div>
 {:else}
 	<div class="create-recipe">
 		<h1>Create New Recipe</h1>
-
 		{#if error}
 			<div class="error-text">{error}</div>
 		{/if}
-
 		<form on:submit|preventDefault={handleSubmit}>
 			<div class="form-group">
 				<label for="title">Recipe Title *</label>
@@ -81,101 +71,43 @@
 					required
 				/>
 			</div>
-
 			<div class="form-group">
 				<label for="description">Description</label>
-				<textarea
-					id="description"
-					bind:value={description}
-					placeholder="Enter recipe description"
-					disabled={loading}
-					rows="3"
-				></textarea>
+				<textarea id="description" bind:value={description} placeholder="Enter recipe description" disabled={loading} rows="3"></textarea>
 			</div>
-
 			<div class="form-row">
 				<div class="form-group">
 					<label for="prepTime">Prep Time (minutes)</label>
-					<input
-						id="prepTime"
-						type="number"
-						bind:value={prepTime}
-						placeholder="e.g., 15"
-						disabled={loading}
-						min="0"
-					/>
+					<input id="prepTime" type="number" bind:value={prepTime} placeholder="e.g., 15" disabled={loading} min="0">
 				</div>
-
 				<div class="form-group">
 					<label for="cookingTime">Cooking Time (minutes)</label>
-					<input
-						id="cookingTime"
-						type="number"
-						bind:value={cookingTime}
-						placeholder="e.g., 30"
-						disabled={loading}
-						min="0"
-					/>
+					<input id="cookingTime" type="number" bind:value={cookingTime} placeholder="e.g., 30" disabled={loading} min="0">
 				</div>
-
 				<div class="form-group">
 					<label for="servings">Servings</label>
-					<input
-						id="servings"
-						type="number"
-						bind:value={servings}
-						placeholder="e.g., 4"
-						disabled={loading}
-						min="0"
-					/>
+					<input id="servings" type="number" bind:value={servings} placeholder="e.g., 4" disabled={loading} min="0">
 				</div>
 			</div>
-
 			<div class="form-group">
 				<label for="ingredients">Ingredients *</label>
-				<textarea
-					id="ingredients"
-					bind:value={ingredients}
-					placeholder="Enter ingredients, one per line"
-					disabled={loading}
-					rows="6"
-					required
-				></textarea>
+				<textarea id="ingredients" bind:value={ingredients} placeholder="Enter ingredients, one per line" disabled={loading} rows="6" required></textarea>
 			</div>
-
 			<div class="form-group">
 				<label for="instructions">Instructions *</label>
-				<textarea
-					id="instructions"
-					bind:value={instructions}
-					placeholder="Enter cooking instructions"
-					disabled={loading}
-					rows="6"
-					required
-				></textarea>
+				<textarea id="instructions" bind:value={instructions} placeholder="Enter cooking instructions" disabled={loading} rows="6" required></textarea>
 			</div>
-
 			<div class="form-group">
 				<label for="allergies">Allergies/Warnings</label>
-				<textarea
-					id="allergies"
-					bind:value={allergies}
-					placeholder="Note any allergies or important warnings"
-					disabled={loading}
-					rows="3"
-				></textarea>
+				<textarea id="allergies" bind:value={allergies} placeholder="Note any allergies or important warnings" disabled={loading} rows="3"></textarea>
 			</div>
-
 			<div class="form-actions">
-				<button type="submit" disabled={loading} class="btn btn-primary">
-					{loading ? 'Creating...' : 'Create Recipe'}
-				</button>
+				<button type="submit" disabled={loading} class="btn btn-primary">{loading ? 'Creating...' : 'Create Recipe'}</button>
 				<a href="/recipes" class="btn btn-secondary">Cancel</a>
 			</div>
 		</form>
 	</div>
 {/if}
-
 <style>
 	.create-recipe {
 		background: white;
@@ -185,12 +117,10 @@
 		max-width: 800px;
 		margin: 0 auto;
 	}
-
 	h1 {
 		color: #333;
 		margin-bottom: 1.5rem;
 	}
-
 	.error-text {
 		color: #d32f2f;
 		background-color: #ffebee;
@@ -198,26 +128,21 @@
 		border-radius: 4px;
 		margin-bottom: 1rem;
 	}
-
 	.form-group {
 		margin-bottom: 1.5rem;
 	}
-
 	.form-row {
 		display: grid;
 		grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
 		gap: 1rem;
 	}
-
 	label {
 		display: block;
 		margin-bottom: 0.5rem;
 		color: #333;
 		font-weight: 500;
 	}
-
-	input,
-	textarea {
+	input, textarea {
 		width: 100%;
 		padding: 0.75rem;
 		border: 1px solid #ddd;
@@ -226,26 +151,20 @@
 		font-family: inherit;
 		box-sizing: border-box;
 	}
-
-	input:focus,
-	textarea:focus {
+	input:focus, textarea:focus {
 		outline: none;
 		border-color: #4caf50;
 		box-shadow: 0 0 5px rgba(76, 175, 80, 0.3);
 	}
-
-	input:disabled,
-	textarea:disabled {
+	input:disabled, textarea:disabled {
 		background-color: #f5f5f5;
 		cursor: not-allowed;
 	}
-
 	.form-actions {
 		display: flex;
 		gap: 1rem;
 		margin-top: 2rem;
 	}
-
 	.btn {
 		padding: 0.75rem 1.5rem;
 		text-decoration: none;
@@ -256,30 +175,24 @@
 		font-weight: bold;
 		transition: all 0.3s;
 	}
-
 	.btn-primary {
 		background-color: #4caf50;
 		color: white;
 	}
-
 	.btn-primary:hover:not(:disabled) {
 		background-color: #45a049;
 	}
-
 	.btn-primary:disabled {
 		background-color: #a5a5a5;
 		cursor: not-allowed;
 	}
-
 	.btn-secondary {
 		background-color: #2196f3;
 		color: white;
 	}
-
 	.btn-secondary:hover {
 		background-color: #0b7dda;
 	}
-
 	.info {
 		background: white;
 		padding: 2rem;

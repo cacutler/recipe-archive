@@ -1,19 +1,9 @@
 import { writable } from 'svelte/store';
 import type { User, AuthState, Recipe, RecipeState } from './types';
-
 export type { User, AuthState, Recipe, RecipeState };
-
-const initialAuthState: AuthState = {
-	isAuthenticated: false,
-	user: null,
-	token: null,
-	loading: false,
-	error: null
-};
-
+const initialAuthState: AuthState = {isAuthenticated: false, user: null, token: null, loading: false, error: null};
 function createAuthStore() {
 	const { subscribe, set, update } = writable<AuthState>(initialAuthState);
-
 	return {
 		subscribe,
 		setUser: (user: User, token: string) => {
@@ -38,20 +28,10 @@ function createAuthStore() {
 		}
 	};
 }
-
 export const authStore = createAuthStore();
-
-// Recipe loading state
-const initialRecipeState: RecipeState = {
-	recipes: [],
-	selectedRecipe: null,
-	loading: false,
-	error: null
-};
-
+const initialRecipeState: RecipeState = {recipes: [], selectedRecipe: null, loading: false, error: null};// Recipe loading state
 function createRecipeStore() {
 	const { subscribe, set, update } = writable<RecipeState>(initialRecipeState);
-
 	return {
 		subscribe,
 		setRecipes: (recipes: Recipe[]) => {
@@ -88,5 +68,4 @@ function createRecipeStore() {
 		}
 	};
 }
-
 export const recipeStore = createRecipeStore();

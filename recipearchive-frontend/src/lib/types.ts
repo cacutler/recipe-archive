@@ -1,7 +1,4 @@
-/**
- * Type definitions for RecipeArchive Frontend
- */
-
+// Type definitions for RecipeArchive Frontend
 export interface User {
 	id: number;
 	firstName: string;
@@ -11,7 +8,6 @@ export interface User {
 	createdAt?: string;
 	updatedAt?: string;
 }
-
 export interface Recipe {
 	id: number;
 	userId: number;
@@ -26,18 +22,15 @@ export interface Recipe {
 	createdAt?: string;
 	updatedAt?: string;
 }
-
 export interface LoginResponse {
 	token: string;
 	username: string;
 	userId: number;
 }
-
 export interface ApiError {
 	message: string;
 	error?: string;
 }
-
 export interface AuthState {
 	isAuthenticated: boolean;
 	user: User | null;
@@ -45,7 +38,6 @@ export interface AuthState {
 	loading: boolean;
 	error: string | null;
 }
-
 export interface RecipeState {
 	recipes: Recipe[];
 	selectedRecipe: Recipe | null;

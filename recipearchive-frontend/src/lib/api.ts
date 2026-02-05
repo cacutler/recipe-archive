@@ -1,18 +1,10 @@
-// API client with JWT token handling
-
-import type { User, Recipe, LoginResponse } from './types';
-
-// Use relative paths in development, absolute URL in production
-const API_BASE_URL = typeof window !== 'undefined' && window.location.hostname !== 'localhost'
-	? 'http://localhost:8080'
-	: '';
-
+import type { User, Recipe, LoginResponse } from './types';// API client with JWT token handling
+const API_BASE_URL = typeof window !== 'undefined' && window.location.hostname !== 'localhost' ? 'http://localhost:8080' : '';// Use relative paths in development, absolute URL in production
 export interface ApiResponse<T> {
 	data?: T;
 	message?: string;
 	error?: string;
 }
-
 export class ApiClient {
 	private getAuthToken(): string | null {
 		if (typeof window !== 'undefined') {
@@ -20,59 +12,42 @@ export class ApiClient {
 		}
 		return null;
 	}
-
 	private setAuthToken(token: string): void {
 		if (typeof window !== 'undefined') {
 			localStorage.setItem('jwt_token', token);
 		}
 	}
-
 	private removeAuthToken(): void {
 		if (typeof window !== 'undefined') {
 			localStorage.removeItem('jwt_token');
 		}
 	}
-
 	private async request<T>(
 		method: string,
 		endpoint: string,
 		body?: unknown,
 		requiresAuth = true
 	): Promise<T> {
-		const headers: HeadersInit = {
-			'Content-Type': 'application/json'
-		};
-
+		const headers: HeadersInit = {'Content-Type': 'application/json'};
 		const token = this.getAuthToken();
 		if (requiresAuth && token) {
 			headers['Authorization'] = `Bearer ${token}`;
 		}
-
-		const options: RequestInit = {
-			method,
-			headers
-		};
-
+		const options: RequestInit = {method, headers};
 		if (body) {
 			options.body = JSON.stringify(body);
 		}
-
 		const response = await fetch(`${API_BASE_URL}${endpoint}`, options);
-
 		if (!response.ok) {
 			const errorData = await response.json();
 			throw new Error(errorData.message || `API Error: ${response.status}`);
 		}
-
 		if (response.status === 204) {
 			return undefined as T;
 		}
-
 		return response.json();
 	}
-
-	// Auth endpoints
-	async login(username: string, password: string): Promise<LoginResponse> {
+	async login(username: string, password: string): Promise<LoginResponse> {// Auth endpoints
 		const response = await this.request<LoginResponse>(
 			'POST',
 			'/auth/login',
@@ -84,7 +59,6 @@ export class ApiClient {
 		}
 		return response;
 	}
-
 	async signup(userData: {
 		firstName: string;
 		lastName: string;
@@ -94,16 +68,12 @@ export class ApiClient {
 	}): Promise<User> {
 		return this.request('POST', '/users', userData, false);
 	}
-
 	logout(): void {
 		this.removeAuthToken();
 	}
-
-	// User endpoints
-	async getUser(id: number): Promise<User> {
+	async getUser(id: number): Promise<User> {// User endpoints
 		return this.request('GET', `/users/${id}`);
 	}
-
 	async updateUser(
 		id: number,
 		updates: {
@@ -114,24 +84,18 @@ export class ApiClient {
 	): Promise<User> {
 		return this.request('PATCH', `/users/${id}`, updates);
 	}
-
 	async deleteUser(id: number): Promise<void> {
 		return this.request('DELETE', `/users/${id}`);
 	}
-
-	// Recipe endpoints
-	async getAllRecipes(): Promise<Recipe[]> {
+	async getAllRecipes(): Promise<Recipe[]> {// Recipe endpoints
 		return this.request('GET', '/recipes', undefined, false);
 	}
-
 	async getRecipeById(id: number): Promise<Recipe> {
 		return this.request('GET', `/recipes/${id}`, undefined, false);
 	}
-
 	async getUserRecipes(userId: number): Promise<Recipe[]> {
 		return this.request('GET', `/recipes/user/${userId}`, undefined, false);
 	}
-
 	async createRecipe(recipeData: {
 		title: string;
 		description: string;
@@ -145,7 +109,6 @@ export class ApiClient {
 	}): Promise<Recipe> {
 		return this.request('POST', '/recipes', recipeData);
 	}
-
 	async updateRecipe(
 		id: number,
 		updates: {
@@ -161,10 +124,8 @@ export class ApiClient {
 	): Promise<Recipe> {
 		return this.request('PUT', `/recipes/${id}`, updates);
 	}
-
 	async deleteRecipe(id: number): Promise<void> {
 		return this.request('DELETE', `/recipes/${id}`);
 	}
 }
-
 export const apiClient = new ApiClient();
