@@ -69,6 +69,9 @@
 						{#if recipe.servings}
 							<span class="info-item">🍽️ Servings: {recipe.servings}</span>
 						{/if}
+						{#if recipe.allergies}
+							<span class="info-item">Allergies: {recipe.allergies}</span>
+						{/if}
 					</div>
 					<div class="card-actions">
 						<a href={`/recipes/${recipe.id}`} class="btn btn-sm btn-primary">View</a>

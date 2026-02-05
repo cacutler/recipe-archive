@@ -48,6 +48,7 @@ public class RecipeService {
         recipe.setDescription(recipeCreateDTO.getDescription());
         recipe.setIngredients(recipeCreateDTO.getIngredients());
         recipe.setInstructions(recipeCreateDTO.getInstructions());
+        recipe.setAllergies(recipeCreateDTO.getAllergies());
         recipe.setPrepTime(recipeCreateDTO.getPrepTime());
         recipe.setCookingTime(recipeCreateDTO.getCookingTime());
         recipe.setServings(recipeCreateDTO.getServings());
@@ -69,6 +70,9 @@ public class RecipeService {
         }
         if (recipeUpdateDTO.getInstructions() != null) {
             recipe.setInstructions(recipeUpdateDTO.getInstructions());
+        }
+        if (recipeUpdateDTO.getAllergies() != null) {
+            recipe.setAllergies(recipeUpdateDTO.getAllergies());
         }
         if (recipeUpdateDTO.getPrepTime() != null) {
             recipe.setPrepTime(recipeUpdateDTO.getPrepTime());

@@ -62,14 +62,7 @@
 		<form on:submit|preventDefault={handleSubmit}>
 			<div class="form-group">
 				<label for="title">Recipe Title *</label>
-				<input
-					id="title"
-					type="text"
-					bind:value={title}
-					placeholder="Enter recipe title"
-					disabled={loading}
-					required
-				/>
+				<input id="title" type="text" bind:value={title} placeholder="Enter recipe title" disabled={loading} required>
 			</div>
 			<div class="form-group">
 				<label for="description">Description</label>
