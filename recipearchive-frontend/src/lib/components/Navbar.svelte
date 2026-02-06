@@ -16,9 +16,7 @@
 				<li><a href="/recipes">Recipes</a></li>
 				<li><a href="/recipes/create">Create Recipe</a></li>
 				<li><a href="/profile">Profile</a></li>
-				<li>
-					<button on:click={handleLogout} class="logout-btn">Logout</button>
-				</li>
+				<li><button on:click={handleLogout} class="logout-btn">Logout</button></li>
 			{:else}
 				<li><a href="/login">Login</a></li>
 				<li><a href="/signup">Sign Up</a></li>
