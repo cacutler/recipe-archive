@@ -10,7 +10,7 @@
 </script>
 <nav class="navbar">
 	<div class="navbar-container">
-		<a href="/recipes" class="navbar-brand">RecipeArchive</a>
+		<a href="/recipes" class="navbar-brand">The Recipe Archive</a>
 		<ul class="navbar-nav">
 			{#if $authStore.isAuthenticated && $authStore.user}
 				<li><a href="/recipes">Recipes</a></li>
