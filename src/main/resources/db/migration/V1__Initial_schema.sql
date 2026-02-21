@@ -1,6 +1,6 @@
 -- Create users table
 CREATE TABLE users (
-    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    id BIGINT BIGSERIAL PRIMARY KEY,
     first_name VARCHAR(50),
     last_name VARCHAR(50),
     username VARCHAR(50) UNIQUE NOT NULL,
@@ -11,7 +11,7 @@ CREATE TABLE users (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 -- Create recipes table
 CREATE TABLE recipes (
-    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    id BIGINT BIGSERIAL PRIMARY KEY,
     user_id BIGINT NOT NULL,
     title VARCHAR(200) NOT NULL,
     description TEXT,
