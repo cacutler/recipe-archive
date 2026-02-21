@@ -14,5 +14,3 @@ spring:
 logging:
     level:
         '[com.cacutler.recipearchive]': INFO
-server:
-  port: ${PORT:8080}
