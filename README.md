@@ -1,6 +1,6 @@
 # The Recipe Archive
 
-This is a Spring Boot backend and Svelte/SvelteKit frontend project with a MySQL database for digitizing, storing, and retrieving/viewing family recipes.
+This is a Spring Boot backend and Svelte/SvelteKit frontend project with a PostgreSQL database for digitizing, storing, and retrieving/viewing family recipes.
 
 ## Project Details
 
