@@ -28,7 +28,7 @@ This is a Spring Boot backend and Svelte/SvelteKit frontend project with a Postg
 
 ### Database Design
 
-The database uses MySQL and has the following tables and table columns.
+The database uses PostgreSQL and has the following tables and table columns.
 
 **Recipe Table:**
 

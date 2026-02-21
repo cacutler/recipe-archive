@@ -12,7 +12,7 @@ CREATE TABLE users (
 -- Create recipes table
 CREATE TABLE recipes (
     id BIGSERIAL PRIMARY KEY,
-    user_id BIGINT NOT NULL,
+    user_id BIGSERIAL NOT NULL,
     title VARCHAR(200) NOT NULL,
     description TEXT,
     ingredients TEXT NOT NULL,
