@@ -18,8 +18,8 @@ This is a Spring Boot backend and Svelte/SvelteKit frontend project with a Postg
 
 - Spring Boot Starter Web
 - Spring Boot Starter Data JPA
-- MySQL Connector J
 - Spring Boot Starter Validation
+- PostgreSQL
 - Lombok
 - Flyway Core
 - Model Mapper
@@ -32,7 +32,7 @@ The database uses PostgreSQL and has the following tables and table columns.
 
 **Recipe Table:**
 
-- Recipe ID: big_int (primary key)
+- Recipe ID: big_serial (primary key)
 - User ID: big_int (foreign key)
 - Title: varchar(200)
 - Description: text
@@ -47,7 +47,7 @@ The database uses PostgreSQL and has the following tables and table columns.
 
 **User Table:**
 
-- User ID: big_int (primary key)
+- User ID: big_serial (primary key)
 - First Name: varchar(50)
 - Last Name: varchar(50)
 - Username: varchar(50)
