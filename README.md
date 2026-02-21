@@ -6,7 +6,7 @@ This is a Spring Boot backend and Svelte/SvelteKit frontend project with a Postg
 
 **Language and Language Version:** Java 21
 
-**Spring Boot Version:** 4.0.2
+**Spring Boot Version:** 4.0.3
 
 **Build Tool:** Maven
 
