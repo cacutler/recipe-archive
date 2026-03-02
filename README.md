@@ -2,6 +2,10 @@
 
 This is a Spring Boot backend and Svelte/SvelteKit frontend project with a PostgreSQL database for digitizing, storing, and retrieving/viewing family recipes.
 
+## Homepage Screenshot
+
+![Homepage](Home.png)
+
 ## Project Details
 
 **Language and Language Version:** Java 21
