@@ -2,7 +2,7 @@ services:
   - type: web
     name: recipe-archive-backend
     env: java
-    rootDir: backend
+    rootDir: ./
     buildCommand: ./mvnw clean package -DskipTests
     startCommand: java -jar target/*.jar
     envVars:
@@ -10,9 +10,8 @@ services:
         fromDatabase:
           name: recipe-archive-db
           property: connectionString
-
   - type: web
-    name: recipe-archive-frontend
+    name: recipearchive-frontend
     env: static
     rootDir: frontend
     buildCommand: npm install && npm run build
@@ -20,8 +19,7 @@ services:
     envVars:
       - key: PUBLIC_API_URL
         value: https://recipe-archive-backend.onrender.com
-
 databases:
   - name: recipe-archive-db
     plan: free
-    databaseName: recipe_archive
+    databaseName: recipe_db
